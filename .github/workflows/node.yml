@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: uses node.js version 18
+      - name: Uses node.js version 18
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
