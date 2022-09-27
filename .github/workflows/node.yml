@@ -5,12 +5,18 @@ on:
     pull_request: [ main ]
 jobs:
   build:
+    env:
+      CI: true
+    Strategy:
+      matrix:
+        node-version: [16.x,18.x]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: uses node.js version 18
         uses: actions/setup-node@v2
         with:
-          node-version: '18'
+          node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: cd Client && npm run build
+      - run: npm test
