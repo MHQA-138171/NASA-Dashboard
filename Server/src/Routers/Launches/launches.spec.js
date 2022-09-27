@@ -6,15 +6,19 @@ const {
 } = require('../../services/mongo');
 
 const app = require('../../app');
+const {
+    loadPlanets
+} = require('../../Models/planets.model')
 
 describe('testing Launches API', () => {
     beforeAll(async () => {
-        await mongoConnect()
+        await mongoConnect();
+        await loadPlanets();
     });
     afterAll(async () => {
         await mongoDisconnect()
             .then(console.log('we exit mongoDB'))
-    })
+    });
 
     describe('Test GET/launches', () => {
         test('It should respond with 200 success', async () => {
