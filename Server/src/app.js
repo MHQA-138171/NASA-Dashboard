@@ -1,6 +1,4 @@
 const path = require('path');
-
-const cors = require('cors');
 const morgan = require('morgan');
 const express = require('express');
 
@@ -8,9 +6,11 @@ const api = require('./Routers/api');
 
 const app = express();
 
-app.use(cors({
-    origin: 'http://localhost:3000'
-}));
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 app.use(morgan('combined'));
 
